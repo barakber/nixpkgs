@@ -12,11 +12,15 @@
   ];
 
   home.packages = [
+    pkgs.file
+    pkgs.atool
+    pkgs.binutils
     pkgs.ranger
     pkgs.strace
     pkgs.ripgrep
     pkgs.bat
     pkgs.hexd
+    pkgs.poppler_utils
     pkgs.typespeed
     pkgs.lynx
 
