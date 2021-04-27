@@ -19,6 +19,7 @@
     pkgs.hexd
     pkgs.typespeed
     pkgs.lynx
+
     pkgs.xdotool
   ];
 
@@ -59,7 +60,7 @@
 
   programs.htop = {
     enable = true;
-    treeView = true;
+    #treeView = true;
   };
 
   programs.jq = {
@@ -77,14 +78,6 @@
     shell = "${pkgs.fish}/bin/fish";
   };
 
-  programs.urxvt = {
-    enable = true;
-    transparent = true;
-    keybindings = {
-      "Shift-Control-C" = "eval:selection_to_clipboard";
-      "Shift-Control-V" = "eval:paste_clipboard";
-    };
-  };
 
   programs.feh = {
     enable = true;
@@ -99,6 +92,8 @@
   };
 
   programs.neovim = import ./neovim.nix { inherit pkgs; };
+
+  programs.urxvt = import ./urxvt.nix { inherit pkgs; };
 
   services.keynav = {
     enable = true;

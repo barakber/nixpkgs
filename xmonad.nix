@@ -31,13 +31,13 @@ import qualified XMonad.StackSet as W
 import Data.Function (fix)
 
 --
-myTerminal = "urxvtc"
+myTerminal = "urxvtc -tr -sh 20"
 
 myLauncher = "$(yeganesh -x -- -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*' -nb '#000000' -nf '#FFFFFF' -sb '#7C7C7C' -sf '#CEFFAC')"
 
 myWorkspaces = [ "1:term"
                , "2:edit"
-               , "3:atidot"
+               , "3:temp"
                , "4:web"
                , "5"
                , "6:vm"
@@ -88,21 +88,21 @@ tabConfig = defaultTheme
 
 
 --
-myModMask = mod4Mask
+myModMask = mod1Mask
 altMask = mod1Mask
 
 (?) :: Bool -> a -> a -> a
 True ? a = const a
 False ? a = id
 
-myKeys conf@(XConfig {XMonad.modMask = modMask}) = Map.fromList $
+myKeys conf@(XConfig {XMonad.modMask = myModMask}) = Map.fromList $
     [ -- start terminal
-      ( (modMask, xK_Return)
+      ( (myModMask, xK_Return)
       , spawn $ XMonad.terminal conf
       )
 
       -- mouse submap
-     , ((modMask, xK_m),
+     , ((myModMask, xK_m),
          fix (\cmd ->
            submap . Map.fromList $
              map (\(a,b,c) -> (a, b >> (c ? cmd $ return ())))
@@ -128,20 +128,20 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = Map.fromList $
              ]))
 
       -- lock screen
-    , ( (modMask .|. controlMask, xK_l)
+    , ( (myModMask .|. controlMask, xK_l)
       , spawn "/usr/bin/gnome-screensaver-command --lock"
       )
 
-    , ( (modMask, xK_Escape)
+    , ( (myModMask, xK_Escape)
       , toggleWS
       )
 
---    , ( (modMask, xK_r)
+--    , ( (myModMask, xK_r)
 --      , spawn myLauncher
 --      )
 
       -- randomize background
-    , ( (modMask, xK_p)
+    , ( (myModMask, xK_p)
       , spawn "feh --bg-fill ~/Pictures/Wallpapers/$(ls ~/Pictures/Wallpapers | shuf -n 1)"
      )
 
@@ -161,143 +161,143 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = Map.fromList $
       )
 
        -- next workspace
-     , ( (modMask, xK_Down)
+     , ( (myModMask, xK_Down)
        ,  nextWS
        )
 
-     , ( (modMask,xK_Up)
+     , ( (myModMask,xK_Up)
        , prevWS
        )
 
-     , ( (modMask .|. shiftMask, xK_Down)
+     , ( (myModMask .|. shiftMask, xK_Down)
        , shiftToNext
        )
 
-     , ( (modMask .|. shiftMask, xK_Up)
+     , ( (myModMask .|. shiftMask, xK_Up)
        , shiftToPrev
        )
 
-     , ( (modMask, xK_Right)
+     , ( (myModMask, xK_Right)
        , nextScreen
        )
 
-     , ( (modMask, xK_Left)
+     , ( (myModMask, xK_Left)
        , prevScreen
        )
 
-     , ( (modMask .|. shiftMask, xK_Right)
+     , ( (myModMask .|. shiftMask, xK_Right)
        , shiftNextScreen
        )
 
-     , ( (modMask .|. controlMask, xK_j)
+     , ( (myModMask .|. controlMask, xK_j)
        , prevScreen
        )
 
-     , ( (modMask .|. controlMask, xK_k)
+     , ( (myModMask .|. controlMask, xK_k)
        , nextScreen
        )
 
-     , ( (modMask .|. shiftMask, xK_Left)
+     , ( (myModMask .|. shiftMask, xK_Left)
        , shiftPrevScreen
        )
 
-     , ( (modMask, xK_z)
+     , ( (myModMask, xK_z)
        , toggleWS
        )
 
       -- close focused window
-    , ( (modMask .|. shiftMask, xK_c)
+    , ( (myModMask .|. shiftMask, xK_c)
       , kill
       )
 
       -- Cycle through the available layout algorithms.
-    , ( (modMask, xK_space)
+    , ( (myModMask, xK_space)
       , sendMessage NextLayout
       )
 
       --  Reset the layouts on the current workspace to default.
-    , ( (modMask .|. shiftMask, xK_space)
+    , ( (myModMask .|. shiftMask, xK_space)
       , setLayout $ XMonad.layoutHook conf
       )
 
       -- Resize viewed windows to the correct size.
-    , ( (modMask, xK_n)
+    , ( (myModMask, xK_n)
       , refresh
       )
 
       -- Move focus to the next window.
-    , ( (modMask, xK_Tab)
+    , ( (myModMask, xK_Tab)
       , windows W.focusDown
       )
 
       -- Move focus to the next window.
-    , ( (modMask, xK_j)
+    , ( (myModMask, xK_j)
       , windows W.focusDown
       )
 
       -- Move focus to the previous window.
-    , ( (modMask, xK_k)
+    , ( (myModMask, xK_k)
       , windows W.focusUp
       )
 
       -- Move focus to the master window.
-    -- , ( (modMask, xK_m)
+    -- , ( (myModMask, xK_m)
     --   , windows W.focusMaster
     --   )
 
       -- Swap the focused window and the master window.
-    -- , ( (modMask, xK_Return)
+    -- , ( (myModMask, xK_Return)
     --  , windows W.swapMaster
     --  )
 
       -- Swap the focused window with the next window.
-    , ( (modMask .|. shiftMask, xK_j)
+    , ( (myModMask .|. shiftMask, xK_j)
       , windows W.swapDown
       )
 
       -- Swap the focused window with the previous window.
-    , ( (modMask .|. shiftMask, xK_k)
+    , ( (myModMask .|. shiftMask, xK_k)
       , windows W.swapUp
       )
 
       -- Shrink the master area.
-    , ( (modMask, xK_h)
+    , ( (myModMask, xK_h)
       , sendMessage Shrink
       )
 
       -- Expand the master area.
-    , ( (modMask, xK_l)
+    , ( (myModMask, xK_l)
       , sendMessage Expand
       )
 
       -- Push window back into tiling.
-    , ( (modMask, xK_t)
+    , ( (myModMask, xK_t)
       , withFocused $ windows . W.sink
       )
 
       -- Increment the number of windows in the master area.
-    , ( (modMask, xK_comma)
+    , ( (myModMask, xK_comma)
       , sendMessage (IncMasterN 1)
       )
 
 
       -- Decrement the number of windows in the master area.
-    , ( (modMask, xK_period)
+    , ( (myModMask, xK_period)
       , sendMessage (IncMasterN (-1))
       )
 
       -- Quit xmonad.
-    , ( (modMask .|. shiftMask, xK_q)
+    , ( (myModMask .|. shiftMask, xK_q)
       , io (exitWith ExitSuccess)
       )
 
       -- Setup second screen
-    , ( (modMask, xK_s)
+    , ( (myModMask, xK_s)
       , spawn "xrandr --output HDMI-1  --mode 1920x1080 --scale 1x1 --panning 1920x1080+3200+0"
       )
 
       -- Restart xmonad.
-    , ( (modMask, xK_q)
+    , ( (myModMask, xK_q)
       , restart "xmonad" True
       )
 
@@ -313,14 +313,14 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = Map.fromList $
 
     -- mod-[1..9], Switch to workspace N
     -- mod-shift-[1..9], Move client to workspace N
-    [ ((m .|. modMask, k), windows $ f i)
+    [ ((m .|. myModMask, k), windows $ f i)
     | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
     , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
     ] ++
 
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
-    [ ((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
+    [ ((m .|. myModMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
     | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
     , (f, m)    <- [(W.view, 0), (W.shift, shiftMask)]
     ]
@@ -331,19 +331,19 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = Map.fromList $
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 
-myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
+myMouseBindings (XConfig {XMonad.modMask = myModMask}) = Map.fromList $
     [ -- mod-button1, Set the window to floating mode and move by dragging
-      ( (modMask, button1)
+      ( (myModMask, button1)
       , (\w -> focus w >> mouseMoveWindow w)
       )
 
       -- mod-button2, Raise the window to the top of the stack
-    , ( (modMask, button2)
+    , ( (myModMask, button2)
       , (\w -> focus w >> windows W.swapMaster)
       )
 
       -- mod-button3, Set the window to floating mode and resize by dragging
-    ,   ( (modMask, button3)
+    ,   ( (myModMask, button3)
       , (\w -> focus w >> mouseResizeWindow w)
       )
 
@@ -360,24 +360,24 @@ myWorkScreenResolution = "xrandr --output HDMI-1  --mode 1920x1080 --scale 1x1 -
 --
 main = do
     spawn "urxvtd"
-    spawn "setxkbmap -option caps:swapescape"
-    spawn "setxkbmap -option grp:alt_shift_toggle us,il"
+    -- spawn "setxkbmap -option caps:swapescape"
+    -- spawn "setxkbmap -option grp:alt_shift_toggle us,il"
     spawn "sleep 2"
-    spawn myLaptopResolution
-    spawn myHomeScreenResolution
-    spawn myWorkScreenResolution
+    -- spawn myLaptopResolution
+    -- spawn myHomeScreenResolution
+    -- spawn myWorkScreenResolution
     -- spawn "xrandr --output DP1  --scale 1.5x1.5"
-    spawn "xcompmgr -c -f"
-    spawn "keynav"
-    xmproc <- spawnPipe "xmobar /home/barak/.xmonad/xmobar.hs"
+    -- spawn "xcompmgr -c -f"
+    -- spawn "keynav"
+    -- xmproc <- spawnPipe "xmobar /home/barak/.xmonad/xmobar.hs"
     xmonad $ defaults
-           { logHook = dynamicLogWithPP $ xmobarPP
-                                        { ppOutput = hPutStrLn xmproc
-                                        , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
-                                        , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
-                                        , ppSep = "   "
-                                        }
-           , manageHook = (isFullscreen --> doFullFloat) <+> manageDocks <+> myManageHook
+           { -- logHook = dynamicLogWithPP $ xmobarPP
+             --                            { ppOutput = hPutStrLn xmproc
+             --                            , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
+             --                            , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
+             --                            , ppSep = "   "
+             --                            }
+             manageHook = (isFullscreen --> doFullFloat) <+> manageDocks <+> myManageHook
            , startupHook = setWMName "LG3D"
            , handleEventHook = mconcat
                              [ docksEventHook
