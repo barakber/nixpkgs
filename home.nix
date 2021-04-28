@@ -25,6 +25,7 @@
     pkgs.lynx
 
     pkgs.xdotool
+    pkgs.dolphin
   ];
 
   programs.home-manager = {
@@ -44,6 +45,7 @@
       cat = "bat";
       ls  = "exa";
       xxd = "hexd";
+      lynx = "lynx -vikeys lite.duckduckgo.com/lite";
     };
   };
 
@@ -64,6 +66,7 @@
 
   programs.htop = {
     enable = true;
+    vimMode = true;
     #treeView = true;
   };
 
@@ -79,6 +82,7 @@
   programs.tmux = {
     enable = true;
     keyMode = "vi";
+    terminal = "screen-256color";
     shell = "${pkgs.fish}/bin/fish";
   };
 
