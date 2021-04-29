@@ -14,7 +14,7 @@
   home.packages = [
     pkgs.file
     pkgs.atool
-    pkgs.binutils
+    #pkgs.binutils
     pkgs.ranger
     pkgs.strace
     pkgs.ripgrep
@@ -91,13 +91,13 @@
     enable = true;
   };
 
-  programs.chromium = {
-    enable = true;
-    extensions = [
-      # vimium
-      { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; }
-    ];
-  };
+  #programs.chromium = {
+  #  enable = true;
+  #  extensions = [
+  #    # vimium
+  #    { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; }
+  #  ];
+  #};
 
   programs.neovim = import ./neovim.nix { inherit pkgs; };
 
@@ -111,5 +111,5 @@
     enable = true;
   };
 
-  xsession.windowManager.xmonad = import ./xmonad.nix { inherit pkgs; };
+  #xsession.windowManager.xmonad = import ./xmonad.nix { inherit pkgs; };
 }
