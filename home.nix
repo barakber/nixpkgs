@@ -23,6 +23,7 @@
     pkgs.poppler_utils
     pkgs.typespeed
     pkgs.lynx
+    pkgs.niv
 
     pkgs.xdotool
     pkgs.dolphin
