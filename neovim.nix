@@ -28,6 +28,9 @@
     map <Leader>; <Leader><Leader>b
     map ; <Leader><Leader>w
     nnoremap <Leader>. :CtrlPMRU<CR>
+    command! -nargs=1 Web vnew|call termopen('lynx -vikeys -scrollbar lite.duckduckgo.com/lite?q='.shellescape(substitute(<q-args>,'#','%23','g')))
+    command! -nargs=1 Websearch vnew|call termopen('lynx -vikeys -scrollbar lite.duckduckgo.com/lite?q=<q-args>')
+    nnoremap <Leader>w :Websearch <C-R>=expand('<cword>')<cr><cr>
   '';
   plugins = with pkgs.vimPlugins; [
     easymotion
