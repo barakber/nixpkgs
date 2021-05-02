@@ -3,7 +3,7 @@
 {
   home.username = "berko";
   home.homeDirectory = "/home/berko";
-  home.stateVersion = "21.05";
+  home.stateVersion = "20.09";
 
   nixpkgs.overlays = [
     (self: super: {
@@ -24,6 +24,7 @@
     pkgs.typespeed
     pkgs.lynx
     pkgs.niv
+    pkgs.exa
 
     pkgs.xdotool
     pkgs.dolphin
@@ -75,16 +76,16 @@
     enable = true;
   };
 
-  programs.exa = {
-    enable = true;
-  };
+  #programs.exa = {
+  #  enable = true;
+  #};
 
 
   programs.tmux = {
     enable = true;
     keyMode = "vi";
     terminal = "screen-256color";
-    shell = "${pkgs.fish}/bin/fish";
+    #shell = "${pkgs.fish}/bin/fish";
   };
 
 
@@ -95,8 +96,7 @@
   programs.chromium = {
     enable = true;
     extensions = [
-      # vimium
-      { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; }
+      "dbepggeogbaibhgnhhndojpepiihcmeb" # vimium
     ];
   };
 
