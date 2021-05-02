@@ -25,6 +25,7 @@
     pkgs.lynx
     pkgs.niv
     pkgs.exa
+    pkgs.awscli2
 
     pkgs.xdotool
     pkgs.dolphin
