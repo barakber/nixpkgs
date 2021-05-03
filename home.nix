@@ -25,7 +25,10 @@
     pkgs.lynx
     pkgs.niv
     pkgs.exa
+    pkgs.nettools
     pkgs.awscli2
+    pkgs.nmap
+    pkgs.httpie
 
     pkgs.xdotool
     pkgs.dolphin

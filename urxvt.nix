@@ -1,11 +1,16 @@
 { pkgs }:
 {
   enable = true;
+  package = pkgs.rxvt_unicode-with-plugins;
   transparent = true;
   #shading = 50;
   keybindings = {
     "Shift-Control-C" = "eval:selection_to_clipboard";
     "Shift-Control-V" = "eval:paste_clipboard";
+    "Control-Up"      = "font-size:increase";
+    "Control-Down"    = "font-size:decrease";
+    "Control-equal"   = "font-size:reset";
+    "Control-slash"   = "font-size:show";
   };
   extraConfig = {
       font           = "xft:Monospace:pixelsize=11";
@@ -29,13 +34,7 @@
       color7         = "#D3D7CF";
       color15        = "#EEEEEC";
       colorUL        = "#AED210";
-      perl-ext       = "default,url-select,bidi,selection-to-clipboard,keyboard-select";
+      perl-ext       = "default,url-select,bidi,selection-to-clipboard,keyboard-select,font-size";
       "bidi.enabled" = 1;
-      "URxvt.keysym.C-Up" =    "font-size:increase";
-      "URxvt.keysym.C-Down" =  "font-size:decrease";
-      "URxvt.keysym.C-S-Up" =  "font-size:incglobal";
-      "URxvt.keysym.C-S-Down" ="font-size:decglobal";
-      "URxvt.keysym.C-equal" = "font-size:reset";
-      "URxvt.keysym.C-slash" = "font-size:show";
   };
 }
