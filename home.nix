@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "berko";
-  home.homeDirectory = "/home/berko";
+  home.username = "$USER";
+  home.homeDirectory = "/home/$USER";
   home.stateVersion = "20.09";
 
   nixpkgs.overlays = [
