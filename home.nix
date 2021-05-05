@@ -29,6 +29,7 @@
     pkgs.awscli2
     pkgs.nmap
     pkgs.httpie
+    pkgs.tokei
 
     pkgs.xdotool
     pkgs.dolphin
