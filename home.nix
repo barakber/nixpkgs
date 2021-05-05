@@ -11,29 +11,48 @@
     })
   ];
 
-  home.packages = [
-    pkgs.file
-    pkgs.atool
-    pkgs.binutils
-    pkgs.ranger
-    pkgs.strace
-    pkgs.ripgrep
-    pkgs.bat
-    pkgs.hexd
-    pkgs.poppler_utils
-    pkgs.typespeed
-    pkgs.lynx
-    pkgs.niv
-    pkgs.exa
-    pkgs.nettools
-    pkgs.awscli2
-    pkgs.nmap
-    pkgs.httpie
-    pkgs.tokei
+  home.packages =
+    let
+      utils = [
+        pkgs.ripgrep
+        pkgs.exa
+        pkgs.bat
+        pkgs.hexd
+        pkgs.tokei
 
-    pkgs.xdotool
-    pkgs.dolphin
-  ];
+        pkgs.atool
+        pkgs.file
+        pkgs.binutils
+        pkgs.strace
+        pkgs.poppler_utils
+      ];
+
+      tui = [
+        pkgs.ranger
+        pkgs.lynx
+        pkgs.typespeed
+      ];
+
+      net = [
+        pkgs.nettools
+        pkgs.nmap
+        pkgs.httpie
+      ];
+
+      cloud = [
+        pkgs.awscli2
+      ];
+
+      nix = [
+        pkgs.niv
+      ];
+
+      gui = [
+        pkgs.xdotool
+        pkgs.dolphin
+      ];
+    in
+      utils ++ tui ++ net ++ cloud ++ nix ++ gui;
 
   programs.home-manager = {
     enable = true;
