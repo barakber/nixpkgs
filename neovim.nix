@@ -47,5 +47,6 @@
     vim-expand-region
     vim-nix
     vim-terraform
+    vim-toml
   ];
 }
