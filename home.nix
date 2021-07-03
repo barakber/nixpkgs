@@ -48,8 +48,6 @@
       ];
 
       gui = [
-        pkgs.xdotool
-        pkgs.dolphin
       ];
     in
       utils ++ tui ++ net ++ cloud ++ nix ++ gui;
@@ -92,8 +90,7 @@
 
   programs.htop = {
     enable = true;
-    vimMode = true;
-    #treeView = true;
+    settings.vim_mode = true;
   };
 
   programs.jq = {
@@ -113,28 +110,28 @@
   };
 
 
-  programs.feh = {
-    enable = true;
-  };
+  #programs.feh = {
+  #  enable = true;
+  #};
 
-  programs.chromium = {
-    enable = true;
-    extensions = [
-      "dbepggeogbaibhgnhhndojpepiihcmeb" # vimium
-    ];
-  };
+  #programs.chromium = {
+  #  enable = true;
+  #  extensions = [
+  #    "dbepggeogbaibhgnhhndojpepiihcmeb" # vimium
+  #  ];
+  #};
 
   programs.neovim = import ./neovim.nix { inherit pkgs; };
 
-  programs.urxvt = import ./urxvt.nix { inherit pkgs; };
+  #programs.urxvt = import ./urxvt.nix { inherit pkgs; };
 
-  services.keynav = {
-    enable = true;
-  };
+  #services.keynav = {
+  #  enable = true;
+  #};
 
   services.lorri = {
     enable = true;
   };
 
-  xsession.windowManager.xmonad = import ./xmonad.nix { inherit pkgs; };
+  #xsession.windowManager.xmonad = import ./xmonad.nix { inherit pkgs; };
 }
