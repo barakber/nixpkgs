@@ -123,6 +123,7 @@ myKeys conf@(XConfig {XMonad.modMask = myModMask}) = Map.fromList $
              , ((shiftMask, xK_m),             spawn "xdotool getwindowfocus mousemove --window %1 --polar  0 0", True)
              , ((0, xK_f),                     spawn "xdotool click --clearmodifiers 1 && xdotool click 1",       True)
              , ((0, xK_g),                     spawn "xdotool click --clearmodifiers 3 && xdotool click 3",       True)
+             , ((0, xK_v),                     spawn "xdotool key shift+Insert",       True)
              , ((altMask .|. shiftMask, xK_j), spawn "sleep 0.2 && xdotool click --clearmodifiers 4",             True)
              , ((altMask .|. shiftMask, xK_k), spawn "sleep 0.2 && xdotool click --clearmodifiers 5",             True)
              ]))
@@ -368,7 +369,7 @@ main = do
     -- spawn myWorkScreenResolution
     -- spawn "xrandr --output DP1  --scale 1.5x1.5"
     -- spawn "xcompmgr -c -f"
-    -- spawn "keynav"
+    spawn "keynav"
     -- xmproc <- spawnPipe "xmobar /home/barak/.xmonad/xmobar.hs"
     xmonad $ defaults
            { -- logHook = dynamicLogWithPP $ xmobarPP

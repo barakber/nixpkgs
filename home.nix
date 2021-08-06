@@ -3,12 +3,17 @@
 {
   home.username = "$USER";
   home.homeDirectory = "/home/$USER";
-  home.stateVersion = "20.09";
+  home.stateVersion = "21.05";
+
+  fonts.fontconfig.enable = true;
 
   nixpkgs.overlays = [
     (self: super: {
       ranger = import ./ranger/default.nix { inherit pkgs; };
     })
+    (import (builtins.fetchTarball {
+    url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+  }))
   ];
 
   home.packages =
@@ -17,6 +22,7 @@
         pkgs.ripgrep
         pkgs.exa
         pkgs.bat
+        pkgs.jp
         pkgs.hexd
         pkgs.tokei
 
@@ -49,10 +55,15 @@
 
       gui = [
         pkgs.xdotool
+        pkgs.keynav
         pkgs.dolphin
       ];
+
+      fonts = [
+        (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+      ];
     in
-      utils ++ tui ++ net ++ cloud ++ nix ++ gui;
+      utils ++ tui ++ net ++ cloud ++ nix ++ gui ++ fonts;
 
   programs.home-manager = {
     enable = true;
@@ -92,7 +103,6 @@
 
   programs.htop = {
     enable = true;
-    vimMode = true;
     #treeView = true;
   };
 
@@ -112,7 +122,6 @@
     #shell = "${pkgs.fish}/bin/fish";
   };
 
-
   programs.feh = {
     enable = true;
   };
@@ -121,10 +130,11 @@
     enable = true;
     extensions = [
       "dbepggeogbaibhgnhhndojpepiihcmeb" # vimium
+      "kbfnbcaeplbcioakkpcpgfkobkghlhen" # grammarly
     ];
   };
 
-  programs.neovim = import ./neovim.nix { inherit pkgs; };
+  programs.neovim = import ./neovim/default.nix { inherit pkgs; };
 
   programs.urxvt = import ./urxvt.nix { inherit pkgs; };
 
