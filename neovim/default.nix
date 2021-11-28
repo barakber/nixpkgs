@@ -47,11 +47,21 @@ in
     }
 
     nerdtree
-    nerdcommenter
+
+    { plugin = nerdcommenter;
+      config = ''
+        map <Leader>cp vip<Leader>cc
+      '';
+    }
+
     vim-surround
     repeat
     vim-airline
-    fugitive
+
+    { plugin = (plugin "tpope/vim-fugitive");
+      config = ''
+      '';
+    }
 
     { plugin = vim-gitgutter;
       config = ''
@@ -69,6 +79,19 @@ in
     vim-toml
     vim-devicons
 
+    { plugin = (plugin "elzr/vim-json");
+      config = ''
+        let g:vim_json_syntax_conceal = 0
+        setlocal foldmethod=syntax
+      '';
+    }
+
+    { plugin = (plugin "frazrepo/vim-rainbow");
+      config = ''
+        map <Leader>r :RainbowToggle<CR>
+      '';
+    }
+
     { plugin = (plugin "mxw/vim-prolog");
       config = ''
         let g:filetype_pl="prolog"
@@ -76,6 +99,12 @@ in
     }
 
     { plugin = (plugin "niklasl/vim-rdf");
+    }
+
+    { plugin = (plugin "Omer/vim-sparql");
+    }
+
+    { plugin = (plugin "runoshun/vim-alloy");
     }
 
     { plugin = (plugin "francoiscabrol/ranger.vim");

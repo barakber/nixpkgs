@@ -12,7 +12,7 @@ python3Packages.buildPythonApplication rec {
 
   src = fetchGit {
     url = "https://github.com/ranger/ranger";
-    rev = "07bad7490a5dc019a58740b0323377437ab1e5da";
+    rev = "3688ddd92ba13b88f57f8a8760b4d8155d8c3e0b";
     #sha256 = "0xsz8nl1k8p1hxc3p6p4x85wn2kwkj1hi5xsiapbfkbxhhg1kq78";
   };
 

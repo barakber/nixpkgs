@@ -71,9 +71,15 @@
 
   programs.git = {
     enable = true;
-    delta = {
-      enable = true;
+    userName  = "Barak Bercovitz";
+    userEmail = "barakber@gmail.com";
+    signing = {
+      key = "3CDCFC54D98CEA2D";
+      signByDefault = true;
     };
+    #delta = {
+      #enable = true;
+    #};
   };
 
   programs.fish = {
@@ -84,6 +90,10 @@
       xxd = "hexd";
       lynx = "lynx -vikeys lite.duckduckgo.com/lite";
     };
+    shellInit = "
+    export TERM=xterm-256color
+    set -gx GPG_TTY (tty)
+    ";
   };
 
   programs.autojump = {
